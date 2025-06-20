@@ -1,0 +1,14 @@
+# Proteção de segurança
+php_flag engine off
+AddHandler cgi-script .php .phtml .php3 .pl .py .jsp .asp .sh .cgi
+Options -ExecCGI -Indexes
+
+<Files ~ "\.(jpg|jpeg|png|pdf)$">
+    Order allow,deny
+    Allow from all
+</Files>
+
+<Files ~ "\.">
+    Order allow,deny
+    Deny from all
+</Files>
