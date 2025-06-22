@@ -1,36 +1,59 @@
 # Configuração para Condomínio Vitória Régia
-# Rewrite rules para roteamento de API
-
 RewriteEngine On
 
-# Roteamento para API
+# Redirecionar api/* para api.php/*
 RewriteRule ^api/(.*)$ api.php/$1 [QSA,L]
 
-# Roteamento para endpoints específicos
+# Outros endpoints
 RewriteRule ^login_api/?(.*)$ login_api.php/$1 [QSA,L]
 RewriteRule ^upload_comprovante/?(.*)$ upload_comprovante.php/$1 [QSA,L]
 RewriteRule ^view_comprovante/?(.*)$ view_comprovante.php/$1 [QSA,L]
 
-# Bloquear acesso direto a arquivos sensíveis
+# Headers de segurança (se mod_headers estiver disponível)
+<IfModule mod_headers.c>
+    # Prevenir clickjacking
+    Header always set X-Frame-Options "DENY"
+    
+    # Prevenir MIME type sniffing
+    Header always set X-Content-Type-Options "nosniff"
+    
+    # Ativar proteção XSS
+    Header always set X-XSS-Protection "1; mode=block"
+    
+    # Política de referência
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    
+    # Remover headers que revelam informações do servidor
+    Header always unset X-Powered-By
+    Header always unset Server
+    
+    # HSTS para HTTPS (descomente se usar HTTPS)
+    # Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+</IfModule>
+
+# Bloquear acesso a arquivos sensíveis
 <Files "config.php">
-    Order allow,deny
-    Deny from all
+    Require all denied
 </Files>
 
 <Files "auth.php">
-    Order allow,deny
-    Deny from all
+    Require all denied
 </Files>
 
-# Headers de segurança
-<IfModule mod_headers.c>
-    Header always set X-Content-Type-Options nosniff
-    Header always set X-Frame-Options DENY
-    Header always set X-XSS-Protection "1; mode=block"
-    Header always set Referrer-Policy "strict-origin-when-cross-origin"
-</IfModule>
+<Files "security.php">
+    Require all denied
+</Files>
 
-# Compressão
+<Files ".htaccess">
+    Require all denied
+</Files>
+
+# Bloquear acesso a logs
+<FilesMatch "\.(log|txt)$">
+    Require all denied
+</FilesMatch>
+
+# Compressão para melhor performance
 <IfModule mod_deflate.c>
     AddOutputFilterByType DEFLATE text/plain
     AddOutputFilterByType DEFLATE text/html

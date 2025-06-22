@@ -54,6 +54,11 @@ $baseUrl = $protocol . '://' . $host . $path;
  * Função para configurar headers de segurança
  */
 function setSecurityHeaders() {
+    // Verificar se headers já foram enviados
+    if (headers_sent()) {
+        return;
+    }
+    
     // Prevenir clickjacking
     header('X-Frame-Options: DENY');
     
@@ -66,24 +71,35 @@ function setSecurityHeaders() {
     // Política de referência
     header('Referrer-Policy: strict-origin-when-cross-origin');
     
-    // Content Security Policy
-    $csp = "default-src 'self'; " .
-           "script-src 'self' 'unsafe-inline'; " .
-           "style-src 'self' 'unsafe-inline'; " .
-           "img-src 'self' data: blob:; " .
-           "font-src 'self'; " .
-           "connect-src 'self'; " .
-           "media-src 'self'; " .
-           "object-src 'none'; " .
-           "base-uri 'self'; " .
-           "form-action 'self';";
+    // Remover headers que podem revelar informações do servidor
+    header_remove('X-Powered-By');
+    header_remove('Server');
+    
+    // Content Security Policy básico
+    $csp = implode('; ', [
+        "default-src 'self'",
+        "script-src 'self' 'unsafe-inline'",
+        "style-src 'self' 'unsafe-inline'",
+        "img-src 'self' data: blob:",
+        "font-src 'self'",
+        "connect-src 'self'",
+        "media-src 'self'",
+        "object-src 'none'",
+        "base-uri 'self'",
+        "form-action 'self'"
+    ]);
     
     header("Content-Security-Policy: $csp");
     
-    // HSTS para HTTPS (ativar em produção)
+    // HSTS para HTTPS (apenas se HTTPS estiver ativo)
     if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
-        header('Strict-Transport-Security: max-age=31536000; includeSubDomains; preload');
+        header('Strict-Transport-Security: max-age=31536000; includeSubDomains');
     }
+    
+    // Cache control para páginas dinâmicas
+    header('Cache-Control: no-cache, no-store, must-revalidate');
+    header('Pragma: no-cache');
+    header('Expires: 0');
 }
 ?>
 <!DOCTYPE html>
@@ -93,17 +109,12 @@ function setSecurityHeaders() {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo SYSTEM_NAME; ?> - Sistema de Gerenciamento</title>
     
-    <!-- Meta tags de segurança -->
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="X-Frame-Options" content="DENY">
-    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
-    <meta name="referrer" content="strict-origin-when-cross-origin">
-    
     <!-- Meta tags para PWA -->
     <meta name="theme-color" content="#2C5530">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="Vitória Régia">
+    <meta name="description" content="Sistema de Gerenciamento do Condomínio Vitória Régia">
     
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏡</text></svg>">
@@ -1020,6 +1031,7 @@ function setSecurityHeaders() {
                 };
 
                 try {
+                    console.log('API Request:', url); // Debug
                     const response = await fetch(url, config);
                     
                     // Verificar se sessão expirou
@@ -1028,15 +1040,28 @@ function setSecurityHeaders() {
                         return null;
                     }
 
+                    // Verificar se a resposta é JSON válida
+                    const contentType = response.headers.get('content-type');
+                    if (!contentType || !contentType.includes('application/json')) {
+                        throw new Error(`Resposta inválida do servidor. Status: ${response.status}`);
+                    }
+
                     const data = await response.json();
                     
                     if (!response.ok) {
-                        throw new Error(data.error || `HTTP ${response.status}`);
+                        throw new Error(data.error || `HTTP ${response.status}: ${response.statusText}`);
                     }
 
                     return data;
                 } catch (error) {
                     console.error('Erro na API:', error);
+                    console.error('URL:', url);
+                    
+                    // Se for erro de rede, mostrar mensagem mais amigável
+                    if (error.name === 'TypeError' && error.message.includes('fetch')) {
+                        throw new Error('Erro de conexão. Verifique sua internet.');
+                    }
+                    
                     throw error;
                 }
             }
@@ -1071,6 +1096,22 @@ function setSecurityHeaders() {
 
         // Inicialização do sistema
         document.addEventListener('DOMContentLoaded', function() {
+            // Tratamento de erros globais
+            window.addEventListener('error', function(e) {
+                console.error('Erro JavaScript:', e.error);
+                if (window.APP_CONFIG.debug) {
+                    showAlert('Erro JavaScript: ' + e.message, 'danger');
+                }
+            });
+
+            // Tratamento de promises rejeitadas
+            window.addEventListener('unhandledrejection', function(e) {
+                console.error('Promise rejeitada:', e.reason);
+                if (window.APP_CONFIG.debug) {
+                    showAlert('Erro de Promise: ' + e.reason, 'danger');
+                }
+            });
+
             setTimeout(() => {
                 document.getElementById('loading-screen').style.display = 'none';
                 
@@ -2042,8 +2083,10 @@ function setSecurityHeaders() {
         // Verificar conexão
         function checkConnection() {
             const statusElement = document.getElementById('connection-status');
+            if (!statusElement) return;
             
-            fetch(window.APP_CONFIG.apiBase + 'casas', {
+            // Fazer uma requisição simples para verificar conectividade
+            fetch(window.APP_CONFIG.apiBase.replace(/\/$/, '') + '/casas', {
                 method: 'HEAD',
                 cache: 'no-cache'
             })
@@ -2127,28 +2170,6 @@ function setSecurityHeaders() {
         document.addEventListener('DOMContentLoaded', function() {
             setupFormValidation();
         });
-
-        // PWA Support (Service Worker)
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function() {
-                navigator.serviceWorker.register('/sw.js')
-                .then(function(registration) {
-                    console.log('ServiceWorker registrado com sucesso:', registration.scope);
-                })
-                .catch(function(error) {
-                    console.log('Falha ao registrar ServiceWorker:', error);
-                });
-            });
-        }
-
-        // Notificações Push (se suportado)
-        function requestNotificationPermission() {
-            if ('Notification' in window && navigator.serviceWorker) {
-                Notification.requestPermission().then(permission => {
-                    console.log('Permissão de notificação:', permission);
-                });
-            }
-        }
 
         // Detectar modo escuro do sistema
         function detectDarkMode() {

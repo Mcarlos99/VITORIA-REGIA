@@ -1,0 +1,103 @@
+[20/06/2025 12:31:17] [INFO] API Request: GET /casas {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:32:44] [INFO] API Request: GET /casas {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:32:45] [INFO] API Request: GET /casas {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:32:45] [INFO] API Request: GET /pagamentos {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:32:45] [INFO] API Request: GET /observacoes {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:33:14] [INFO] API Request: GET /casas {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:34:00] [INFO] API Request: GET /casas {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:34:14] [INFO] API Request: GET /casas {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:34:44] [INFO] API Request: GET /casas {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:35:45] [INFO] API Request: GET /casas {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:36:14] [INFO] API Request: GET /casas {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:36:44] [INFO] API Request: GET /casas {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:37:15] [INFO] API Request: GET /casas {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:37:44] [INFO] API Request: GET /casas {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:38:15] [INFO] API Request: GET /casas {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:38:44] [INFO] API Request: GET /casas {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:39:15] [INFO] API Request: GET /casas {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:39:53] [INFO] API Request: GET /casas {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:40:53] [INFO] API Request: GET /casas {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:41:53] [INFO] API Request: GET /casas {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:42:52] [INFO] API Request: GET /casas {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:43:53] [INFO] API Request: GET /casas {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:44:53] [INFO] API Request: GET /casas {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:45:53] [INFO] API Request: GET /casas {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:46:53] [INFO] API Request: GET /casas {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:47:53] [INFO] API Request: GET /casas {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:48:21] [INFO] API Request: GET /casas {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:48:28] [INFO] API Request: GET /casas {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:48:29] [INFO] API Request: GET /casas {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:48:29] [INFO] API Request: GET /pagamentos {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:48:29] [INFO] API Request: GET /observacoes {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:48:58] [INFO] API Request: GET /casas {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:49:23] [INFO] API Request: DELETE /pagamentos/2 {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:49:23] [INFO] Pagamento excluído: Casa 1 - 7/2025 
+[20/06/2025 12:49:23] [INFO] API Request: GET /pagamentos {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:49:25] [INFO] API Request: DELETE /pagamentos/1 {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:49:25] [INFO] Pagamento excluído: Casa 1 - 6/2025 
+[20/06/2025 12:49:25] [INFO] API Request: GET /pagamentos {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:49:27] [INFO] API Request: DELETE /pagamentos/3 {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:49:27] [INFO] Pagamento excluído: Casa 2 - 6/2025 
+[20/06/2025 12:49:28] [INFO] API Request: GET /pagamentos {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:49:28] [INFO] API Request: GET /casas {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:49:30] [INFO] API Request: DELETE /pagamentos/4 {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:49:30] [INFO] Pagamento excluído: Casa 3 - 6/2025 
+[20/06/2025 12:49:30] [INFO] API Request: GET /pagamentos {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:49:35] [INFO] API Request: DELETE /casas/1 {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:49:35] [INFO] Morador removido: Casa 1 - João Silva 
+[20/06/2025 12:49:35] [INFO] API Request: GET /casas {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:49:36] [INFO] API Request: GET /pagamentos {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:49:36] [INFO] API Request: GET /observacoes {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:49:38] [INFO] API Request: DELETE /casas/2 {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:49:38] [INFO] Morador removido: Casa 2 - Maria Santos 
+[20/06/2025 12:49:38] [INFO] API Request: GET /casas {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:49:38] [INFO] API Request: GET /pagamentos {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:49:38] [INFO] API Request: GET /observacoes {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:49:40] [INFO] API Request: DELETE /casas/3 {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:49:40] [INFO] Morador removido: Casa 3 - Carlos Oliveira 
+[20/06/2025 12:49:40] [INFO] API Request: GET /casas {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:49:40] [INFO] API Request: GET /pagamentos {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:49:40] [INFO] API Request: GET /observacoes {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:49:58] [INFO] API Request: GET /casas {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:49:59] [INFO] API Request: GET /casas {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:49:59] [INFO] API Request: GET /pagamentos {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:49:59] [INFO] API Request: GET /observacoes {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:50:28] [INFO] API Request: GET /casas {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:50:58] [INFO] API Request: GET /casas {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:51:29] [INFO] API Request: GET /casas {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:51:58] [INFO] API Request: GET /casas {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:52:28] [INFO] API Request: GET /casas {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:52:33] [INFO] API Request: GET /casas {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:52:34] [INFO] API Request: GET /casas {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:52:34] [INFO] API Request: GET /pagamentos {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:52:35] [INFO] API Request: GET /observacoes {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:52:51] [INFO] API Request: DELETE /observacoes/3 {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:52:51] [INFO] Observação excluída: Casa 3 - Pintura das paredes externas necessária... 
+[20/06/2025 12:52:51] [INFO] API Request: GET /observacoes {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:52:53] [INFO] API Request: DELETE /observacoes/1 {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:52:53] [INFO] Observação excluída: Casa 1 - Trocar fechadura da porta principal... 
+[20/06/2025 12:52:53] [INFO] API Request: GET /observacoes {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:52:55] [INFO] API Request: DELETE /observacoes/2 {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:52:55] [INFO] Observação excluída: Casa 2 - Vazamento na pia da cozinha... 
+[20/06/2025 12:52:55] [INFO] API Request: GET /observacoes {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:53:03] [INFO] API Request: GET /casas {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:53:35] [INFO] API Request: GET /casas {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:54:04] [INFO] API Request: GET /casas {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:54:34] [INFO] API Request: GET /casas {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:55:04] [INFO] API Request: GET /casas {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:55:34] [INFO] API Request: GET /casas {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:56:04] [INFO] API Request: GET /casas {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:56:33] [INFO] API Request: GET /casas {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:57:03] [INFO] API Request: GET /casas {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:57:33] [INFO] API Request: GET /casas {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:58:04] [INFO] API Request: GET /casas {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:58:33] [INFO] API Request: GET /casas {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:59:04] [INFO] API Request: GET /casas {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 12:59:34] [INFO] API Request: GET /casas {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 13:00:05] [INFO] API Request: GET /casas {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 13:00:34] [INFO] API Request: GET /casas {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 13:00:45] [INFO] API Request: GET /casas {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 13:00:46] [INFO] API Request: GET /casas {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 13:00:58] [INFO] API Request: GET /pagamentos {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 13:00:58] [INFO] API Request: GET /observacoes {"user":"admin","ip":"138.122.34.178"}
+[20/06/2025 13:01:15] [INFO] API Request: GET /casas {"user":"admin","ip":"138.122.34.178"}

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste Real da API de Login</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f5f5f5; }
+        .container { max-width: 600px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .result { background: #f8f9fa; padding: 10px; border-radius: 4px; font-family: monospace; white-space: pre-wrap; margin: 10px 0; }
+        .success { border-left: 4px solid #28a745; background: #d4edda; }
+        .error { border-left: 4px solid #dc3545; background: #f8d7da; }
+        button { background: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; margin: 5px; }
+        button:hover { background: #0056b3; }
+        input { width: 100%; padding: 8px; margin: 5px 0; border: 1px solid #ddd; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Teste Real da API de Login</h1>
+        
+        <div class="test-section">
+            <h3>1. Teste de Status (Check)</h3>
+            <button onclick="testCheck()">Testar Status</button>
+            <div id="check-result" class="result"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>2. Teste de Login</h3>
+            <input type="text" id="username" placeholder="Usuário" value="admin">
+            <input type="password" id="password" placeholder="Senha">
+            <button onclick="testLogin()">Testar Login</button>
+            <div id="login-result" class="result"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>3. Teste de Logout</h3>
+            <button onclick="testLogout()">Testar Logout</button>
+            <div id="logout-result" class="result"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>4. Teste de Erro (Request Inválido)</h3>
+            <button onclick="testError()">Testar Erro</button>
+            <div id="error-result" class="result"></div>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'login_api.php';
+
+        async function makeRequest(data) {
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const responseText = await response.text();
+                
+                let responseData;
+                try {
+                    responseData = JSON.parse(responseText);
+                } catch (e) {
+                    responseData = { 
+                        error: 'Resposta não é JSON válido', 
+                        raw_response: responseText,
+                        status: response.status 
+                    };
+                }
+
+                return {
+                    status: response.status,
+                    ok: response.ok,
+                    headers: Object.fromEntries(response.headers.entries()),
+                    data: responseData,
+                    raw: responseText
+                };
+
+            } catch (error) {
+                return {
+                    error: error.message,
+                    type: 'network_error'
+                };
+            }
+        }
+
+        function displayResult(elementId, result) {
+            const element = document.getElementById(elementId);
+            const isSuccess = result.ok && result.data && result.data.success;
+            
+            element.className = `result ${isSuccess ? 'success' : 'error'}`;
+            element.textContent = JSON.stringify(result, null, 2);
+        }
+
+        async function testCheck() {
+            console.log('Testando check...');
+            const result = await makeRequest({ action: 'check' });
+            displayResult('check-result', result);
+        }
+
+        async function testLogin() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            if (!username || !password) {
+                alert('Preencha usuário e senha');
+                return;
+            }
+
+            console.log('Testando login...');
+            const result = await makeRequest({ 
+                action: 'login', 
+                username: username, 
+                password: password 
+            });
+            displayResult('login-result', result);
+        }
+
+        async function testLogout() {
+            console.log('Testando logout...');
+            const result = await makeRequest({ action: 'logout' });
+            displayResult('logout-result', result);
+        }
+
+        async function testError() {
+            console.log('Testando erro...');
+            const result = await makeRequest({ action: 'invalid_action' });
+            displayResult('error-result', result);
+        }
+
+        // Teste automático de check ao carregar a página
+        window.addEventListener('load', function() {
+            setTimeout(testCheck, 1000);
+        });
+    </script>
+</body>
+</html>
